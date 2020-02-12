@@ -6,4 +6,4 @@ Compares two Legends of Runeterra decks for differences.
 2. Put in two deck codes in the corresponding entry boxes.
 3. Compare
 
-![example](example.png)
+![example](https://github.com/NelsonTanCS/DeckComparer/blob/master/example.PNG)

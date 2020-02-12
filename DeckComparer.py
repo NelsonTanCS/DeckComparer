@@ -5,8 +5,11 @@ import tkinter as tk
 # CEAAEBABAINCSNJWBAAQACIOCQNB2JZKFQBAMAICBQSCQLJRHEFACAADAYFAWHRSGM2DKNQ
 
 def clicked():
-    deck1 = Deck.decode(txt1.get())
-    deck2 = Deck.decode(txt2.get())
+    #debug
+    deck1 = Deck.decode('CEBACAIADADQCAQGC4NCQKJRHEBAEAICAIGAGAIAAYNCUAQDAEAAOHRJAMAQEAIYDY')
+    deck2 = Deck.decode('CEAAEBABAINCSNJWBAAQACIOCQNB2JZKFQBAMAICBQSCQLJRHEFACAADAYFAWHRSGM2DKNQ')
+    # deck1 = Deck.decode(txt1.get())
+    # deck2 = Deck.decode(txt2.get())
     diff = var.get()
     text_left.config(state=tk.NORMAL)
     text_right.config(state=tk.NORMAL)
@@ -46,6 +49,22 @@ def clicked():
                         diff -= deck1.cards[i].count
                 if diff > 0:
                     text_right.insert(1.0, f'+ {diff} {card.name}\n')
+    else:  # same
+        print('hello?')
+        for card in deck1.cards:
+            print('what?')
+            if card in deck2.cards:
+                print('ok?')
+                same = min(card.count, deck2.cards[deck2.cards.index(card)])
+                text_left.insert(tk.END, f'{same}x {card.name}')
+            if card in champions:
+                champ_count = 0
+                for i in range(len(deck2.cards)):
+                    if deck2.cards[i].name == card.name:
+                        champ_count = deck2.card[i].count
+                if champ_count > 0:
+                    text_left.insert(tk.END, f'{champ_count}x {card.name}')
+
     # for card in deck1.cards:
     #     text_left.insert(tk.END, f'{card.name} x {card.count}\n')
     #
@@ -60,7 +79,6 @@ window = tk.Tk()
 window.title("Deck Comparer")
 frame = tk.Frame()
 pad = 5
-# window.geometry('350x800')
 
 lbl = tk.Label(window, text="First Deck Code")
 txt1 = tk.Entry(window, width=40)
